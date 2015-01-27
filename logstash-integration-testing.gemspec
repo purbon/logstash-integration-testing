@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.executables = ["lsit-suite", "lsit-deps"]
 
-  gem.add_runtime_dependency "minitest"           #(MIT license) for running the tests from the jar,
-  gem.add_runtime_dependency "rspec", "~> 2.14.0" #(MIT license)
+  gem.add_development_dependency "minitest", '~> 0'
+  gem.add_development_dependency 'rspec', '~> 2.14', '>= 2.14.0'
 
 end
