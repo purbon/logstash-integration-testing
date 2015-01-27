@@ -23,8 +23,8 @@ module LSit
         tests.each do |test|
           events  = test[:events].to_i
           time    = test[:time].to_i
-
-          manager = runner.new(test_config(test[:config]), debug, install_path)
+          workers = test[:workers].to_i
+          manager = runner.new(test_config(test[:config]), workers, debug, install_path)
           metrics = manager.run(events, time, runner.read_input_file(test_input(test[:input])))
           lines << formatter(test[:name], metrics)
         end

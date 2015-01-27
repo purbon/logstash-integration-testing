@@ -19,7 +19,7 @@ describe LSit::Executor::Suite do
     context "using a file" do
 
       it "run each test case in a serial maner" do
-        expect(runner).to receive(:new).with("spec/fixtures/simple.conf", false, logstash_home).twice { serial_runner }
+        expect(runner).to receive(:new).with("spec/fixtures/simple.conf", kind_of(Numeric), false, logstash_home).twice { serial_runner }
         manager.execute
       end
 
@@ -31,7 +31,7 @@ describe LSit::Executor::Suite do
 
       it "run each test case as expected" do
         expect(runner).to receive(:read_input_file).with('./simple_10.txt').twice { [] }
-        expect(runner).to receive(:new).with("./simple.conf", false, logstash_home).twice { serial_runner }
+        expect(runner).to receive(:new).with("./simple.conf", kind_of(Numeric), false, logstash_home).twice { serial_runner }
         manager.execute
       end
 
@@ -43,7 +43,7 @@ describe LSit::Executor::Suite do
     let(:config)        { 'spec/fixtures/wrong_config.yml' }
 
     it "run each test case as expected" do
-      expect(runner).to receive(:new).with("spec/wrong_fixture/simple.conf", false, logstash_home).once { serial_runner }
+      expect(runner).to receive(:new).with("spec/wrong_fixture/simple.conf", kind_of(Numeric), false, logstash_home).once { serial_runner }
       expect { manager.execute }.to raise_error(LSit::ConfigException)
     end
   end
